@@ -39,7 +39,7 @@ RUN apt-get install -y git
 #RUN mkdir -p /var/run/sshd
 
 #RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key 
-RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+#RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 RUN echo 'root:root' | chpasswd
 
 # Put your own public key at id_rsa.pub for key-based login.
