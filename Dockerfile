@@ -18,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-client mysql-server
 #RUN service mysqld start
 
 # install MongoDB
-RUN apt-get install -y mongodb-org=3.6.2 mongodb-org-server=3.6.2 mongodb-org-shell=3.6.2 mongodb-org-mongos=3.6.2 mongodb-org-tools=3.6.2
+RUN apt-get install -y mongodb mongodb-server mongodb-clients
 
 # install php
 #RUN apt-get install -y php7 php7-mysql php7-dev php7-gd php7-memcache php7-pspell php7-xmlrpc libapache2-mod-php7 php7-cli
