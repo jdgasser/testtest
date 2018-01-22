@@ -25,9 +25,31 @@ RUN apt-get install -y mongodb mongodb-server mongodb-clients
 RUN apt-get install -y php7.0 php7.0-mysql libapache2-mod-php7.0 
 #RUN yum install -y php php-mysql php-devel php-gd php-pecl-memcache php-pspell php-snmp php-xmlrpc php-xml
 
-# install phpmyadmin
+# Install phpMyAdmin
+RUN echo '#!/usr/bin/expect -f' > install-phpmyadmin.sh; \
+	echo "set timeout -1" >> install-phpmyadmin.sh; \
+	echo "spawn apt-get install -y phpmyadmin" >> install-phpmyadmin.sh; \
+	echo "expect \"Configure database for phpmyadmin with dbconfig-common?\"" >> install-phpmyadmin.sh; \
+	echo "send \"y\r\"" >> install-phpmyadmin.sh; \
+	echo "expect \"Password of the database's administrative user:\"" >> install-phpmyadmin.sh; \
+	echo "send \"\r\"" >> install-phpmyadmin.sh; \
+	echo "expect \"MySQL application password for phpmyadmin:\"" >> install-phpmyadmin.sh; \
+	echo "send \"\r\"" >> install-phpmyadmin.sh; \
+	echo "expect \"Web server to reconfigure automatically:\"" >> install-phpmyadmin.sh; \
+	echo "send \"1\r\"" >> install-phpmyadmin.sh
+RUN chmod +x install-phpmyadmin.sh
 
-RUN apt-get install -y phpmyadmin                    
+RUN mysqld & \
+	service apache2 start; \
+	sleep 5; \
+	./install-phpmyadmin.sh; \
+	sleep 10; \
+	mysqladmin -u root shutdown
+
+RUN rm install-phpmyadmin.sh
+
+RUN sed -i "s#// \$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;#\$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;#g" /etc/phpmyadmin/config.inc.php 
+                
 
 # install nodejs 8.9.4 (dernière stable en 8.x)
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
