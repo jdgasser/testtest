@@ -12,7 +12,7 @@ RUN apt-get install -y apache2 vim bash-completion unzip
 RUN mkdir -p /var/lock/apache2 /var/run/apache2
 
 # install mysql
-RUN apt-get install -y mysql-client mysql-server
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-client mysql-server
 #RUN echo "NETWORKING=yes" > /etc/sysconfig/network
 # start mysqld to create initial tables
 #RUN service mysqld start
