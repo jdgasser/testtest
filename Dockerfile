@@ -32,7 +32,7 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 
 # install git
-RUN apt-get install git
+RUN apt-get install -y git
 
 # install sshd
 #RUN apt-get install -y openssh-server openssh-client passwd
