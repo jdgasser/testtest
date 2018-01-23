@@ -35,8 +35,10 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y git
 
 # install sshd
-#RUN apt-get install -y openssh-server openssh-client passwd
-#RUN mkdir -p /var/run/sshd
+RUN apt-get install -y openssh-server openssh-client passwd
+RUN mkdir -p /var/run/sshd
+RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 #RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key 
 #RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
