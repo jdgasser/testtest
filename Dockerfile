@@ -55,4 +55,5 @@ ADD test.txt /root/
 EXPOSE 22 80 
 
 #CMD ["supervisord", "-n"]
-CMD ["/bin/bash"]
+#CMD ["/bin/bash"]
+CMD  ["/usr/sbin/sshd", "-D"]
