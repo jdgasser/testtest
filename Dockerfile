@@ -28,7 +28,7 @@ RUN apt-get install -y php7.0 php7.0-mysql libapache2-mod-php7.0
 
 
 # install nodejs 8.9.4 (dernière stable en 8.x)
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 RUN apt-get install -y nodejs
 
 # install git
@@ -57,4 +57,4 @@ EXPOSE 22 80
 #CMD ["supervisord", "-n"]
 #CMD ["/bin/bash"]
 #CMD  ["/usr/sbin/sshd", "-D"]
-CMD service mysql start && service apache2 start && service mongodb start && service ssh start && /usr/sbin/sshd -D
+CMD service mysql start && service apache2 start && service mongodb start && /usr/sbin/sshd -D
