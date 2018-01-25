@@ -28,8 +28,11 @@ RUN apt-get install -y php7.0 php7.0-mysql libapache2-mod-php7.0
 #Install curl
 RUN apt-get install -y curl
 
+#install sudo
+RUN apt-get install -y sudo
+
 # install nodejs 8.9.4 (dernière stable en 8.x)
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 RUN apt-get install -y nodejs
 
 # install git
