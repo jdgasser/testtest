@@ -57,4 +57,4 @@ EXPOSE 22 80
 #CMD ["supervisord", "-n"]
 #CMD ["/bin/bash"]
 #CMD  ["/usr/sbin/sshd", "-D"]
-CMD service mysql start && service apache2 start && service mongodb start && service ssh start && bash
+CMD service mysql start && service apache2 start && service mongodb start && service ssh start && ["/usr/sbin/sshd", "-D"]
