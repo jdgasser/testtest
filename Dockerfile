@@ -32,10 +32,11 @@ RUN apt-get install -y curl
 RUN apt-get install -y sudo
 
 # install nodejs 8.9.4 (dernière stable en 8.x)
+
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 RUN apt-get install -y nodejs
-RUN sudo npm install angular2-collapsible
-RUN sudo npm install -g @angular/cli 
+RUN npm install angular2-collapsible
+RUN npm install -g @angular/cli --unsafe
 
 # install git
 RUN apt-get install -y git
