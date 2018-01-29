@@ -6,7 +6,7 @@ MAINTAINER Jean-Daniel Gasser <jean-daniel.gasser@altran.com>
 
 # Update sources
 RUN apt-get update -y
-RUN apt-get install supervisor
+RUN apt-get install -y supervisor
 
 # install http
 RUN apt-get install -y apache2 vim bash-completion unzip
