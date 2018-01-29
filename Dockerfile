@@ -6,6 +6,7 @@ MAINTAINER Jean-Daniel Gasser <jean-daniel.gasser@altran.com>
 
 # Update sources
 RUN apt-get update -y
+RUN apt-get install supervisor
 
 # install http
 RUN apt-get install -y apache2 vim bash-completion unzip
@@ -37,6 +38,7 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 RUN apt-get install -y nodejs
 RUN npm install angular2-collapsible
 RUN npm install -g @angular/cli --unsafe
+RUN npm install -g @angular/core --unsafe
 
 # install git
 RUN apt-get install -y git
@@ -59,7 +61,7 @@ RUN echo 'root:root' | chpasswd
 #ADD phpinfo.php /var/www/html/
 #ADD supervisord.conf /etc/
 ADD test.txt /root/
-EXPOSE 22 80 
+EXPOSE 22 80 8080
 
 CMD ["supervisord", "-n"]
 #CMD ["/bin/bash"]
