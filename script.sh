@@ -19,8 +19,11 @@ git pull ssh://git@10.1.152.219:10022/InformationSystemNetworkandCloud/Network-s
 # pour passer en dev :
 #git branch DEV
 #git checkout DEV
-
+#modif config du site
+sed -i "s/$password = \"\"/$password = \"root\"/g" studentApi/config/database.php
 cd app-etudiant
+sed -i "s/localhost\:8080/10.1.152.211\:15808/g" src/environments/environment.ts
+sed -i "s/localhost\:8080/10.1.152.211\:15808/g" src/environments/environment.prod.ts
 npm install rxjs 
 npm install zone.js
 npm install -g @angular/core --unsafe
