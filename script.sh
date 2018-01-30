@@ -1,5 +1,5 @@
 
-#installation des clés publiques/privées
+#installation des clÃ©s publiques/privÃ©es
 eval `ssh-agent -s`
 chmod 0600 key_rsa
 ssh-add key_rsa
@@ -31,5 +31,5 @@ ng build --target=production --environment=prod
 
 #service mysql start
 mysqladmin password root
-mysql -uroot -proot < sql/DBSuiviEtudiant.sql
-mysql -uroot -proot students_db< sql/Data.sql
+mysql -uroot -proot < /home/server_suivi/sql/DBSuiviEtudiant.sql
+mysql -uroot -proot students_db< /home/server_suivi/sql/Data.sql
