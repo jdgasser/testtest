@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+﻿FROM ubuntu:16.04
 MAINTAINER Jean-Daniel Gasser <jean-daniel.gasser@altran.com>
 
 # Setup environment
@@ -61,6 +61,7 @@ ADD known_hosts /root/.ssh/
 ADD test.txt /root/
 ADD script.sh /root/
 ADD key_rsa /root/
+ADD vhost_backend.conf /etc/apache2/sites-available/
 EXPOSE 22 80 8080 3306
 
 #CMD ["supervisord", "-n"]

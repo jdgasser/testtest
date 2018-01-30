@@ -1,4 +1,4 @@
-
+﻿
 #installation des clés publiques/privées
 eval `ssh-agent -s`
 chmod 0600 key_rsa
@@ -9,6 +9,8 @@ rm -rf key_rsa
 mkdir /home/server_suivi
 rm -rf /var/www/html
 ln -sf /home/server_suivi/app-etudiant/dist /var/www/html
+ln -sf /etc/apache2/sites-available/vhost_backend.conf /etc/apache2/sites-enabled/vhost_backend.conf
+service apache2 restart
 
 #Git en master
 cd /home/server_suivi
