@@ -30,6 +30,8 @@ npm install
 ng build --target=production --environment=prod
 
 #service mysql start
+#penser à ajouter un root@%
+#penser à virer la ligne bind-adress dans la conf /etc/mysql/mysql.conf.d/mysqld.cnf
 mysqladmin password root
 mysql -uroot -proot < /home/server_suivi/sql/DBSuiviEtudiant.sql
 mysql -uroot -proot students_db< /home/server_suivi/sql/Data.sql
