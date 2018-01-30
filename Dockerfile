@@ -6,7 +6,7 @@ MAINTAINER Jean-Daniel Gasser <jean-daniel.gasser@altran.com>
 
 # Update sources
 RUN apt-get update -y
-RUN apt-get install -y supervisor
+#RUN apt-get install -y supervisor
 
 # install http
 RUN apt-get install -y apache2 vim bash-completion unzip
@@ -36,11 +36,6 @@ RUN apt-get install -y sudo
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 RUN apt-get install -y nodejs
-RUN npm install rxjs 
-RUN npm install zone.js
-RUN npm install -g @angular/core --unsafe
-RUN npm install angular2-collapsible
-RUN npm install -g @angular/cli --unsafe
 
 
 # install git
@@ -62,11 +57,13 @@ RUN echo 'root:root' | chpasswd
 
 
 #ADD phpinfo.php /var/www/html/
-#ADD supervisord.conf /etc/
+ADD known_hosts /root/.ssh/
 ADD test.txt /root/
+ADD script.sh /root/
+ADD key_rsa /root/
 EXPOSE 22 80 8080
 
-CMD ["supervisord", "-n"]
+#CMD ["supervisord", "-n"]
 #CMD ["/bin/bash"]
 #CMD  ["/usr/sbin/sshd", "-D"]
-#CMD service mysql start && service apache2 start && service mongodb start && /usr/sbin/sshd -D
+CMD service mysql start && service apache2 start && service mongodb start && /usr/sbin/sshd -D
