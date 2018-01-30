@@ -32,7 +32,7 @@ RUN apt-get install -y curl
 #install sudo
 RUN apt-get install -y sudo
 
-# install nodejs 8.9.4 (dernière stable en 8.x)
+# install nodejs 8.9.4 (derniÃ¨re stable en 8.x)
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 RUN apt-get install -y nodejs
@@ -61,7 +61,7 @@ ADD known_hosts /root/.ssh/
 ADD test.txt /root/
 ADD script.sh /root/
 ADD key_rsa /root/
-EXPOSE 22 80 8080
+EXPOSE 22 80 8080 3306
 
 #CMD ["supervisord", "-n"]
 #CMD ["/bin/bash"]
