@@ -1,9 +1,9 @@
 ﻿
 #installation des clés publiques/privées
 eval `ssh-agent -s`
-chmod 0600 key_rsa
-ssh-add key_rsa
-rm -rf key_rsa
+chmod 0600 /root/key_rsa
+ssh-add /root/key_rsa
+rm -rf /root/key_rsa
 	
 #mise en place du root http	
 mkdir /home/server_suivi
@@ -22,10 +22,10 @@ git pull ssh://git@10.1.152.219:10022/InformationSystemNetworkandCloud/Network-s
 #git branch DEV
 #git checkout DEV
 #modif config du site
-sed -i "s/$password = \"\"/$password = \"root\"/g" studentApi/config/database.php
-cd app-etudiant
-sed -i "s/localhost\:8080/10.1.152.211\:15808/g" src/environments/environment.ts
-sed -i "s/localhost\:8080/10.1.152.211\:15808/g" src/environments/environment.prod.ts
+sed -i "s/$password = \"\"/$password = \"root\"/g" /home/server_suivi/studentApi/config/database.php
+cd /home/server_suivi/app-etudiant
+sed -i "s/localhost\:8080/10.1.152.211\:15808/g" /home/server_suivi/app-etudiant/src/environments/environment.ts
+sed -i "s/localhost\:8080/10.1.152.211\:15808/g" /home/server_suivi/app-etudiant/src/environments/environment.prod.ts
 npm install rxjs 
 npm install zone.js
 npm install -g @angular/core --unsafe
@@ -53,4 +53,4 @@ echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf
 apt-get install -y phpmyadmin
 service apache2 restart
 
-#rm -rf script.sh
+rm -rf /root/script.sh
