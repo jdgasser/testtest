@@ -34,9 +34,23 @@ npm install -g @angular/cli --unsafe
 npm install
 ng build --target=production --environment=prod
 
-#service mysql start
-#penser à ajouter un root@%
-#penser à virer la ligne bind-adress dans la conf /etc/mysql/mysql.conf.d/mysqld.cnf
+#parametrage mysql et chargement des données
 mysqladmin password root
 mysql -uroot -proot < /home/server_suivi/sql/DBSuiviEtudiant.sql
 mysql -uroot -proot students_db< /home/server_suivi/sql/Data.sql
+sed -i "s/bind-address/\#bind-address/g" /etc/mysql/mysql.conf.d/mysqld.cnf
+service mysql restart
+
+#installation silencieuse de phpmyadmin
+APP_PASS="root"
+ROOT_PASS="root"
+APP_DB_PASS="root"
+echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/app-password-confirm password $APP_PASS" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/mysql/admin-pass password $ROOT_PASS" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/mysql/app-pass password $APP_DB_PASS" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
+apt-get install -y phpmyadmin
+service apache2 restart
+
+#rm -rf script.sh
